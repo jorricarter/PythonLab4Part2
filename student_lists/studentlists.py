@@ -1,6 +1,5 @@
 
 
-
 class StudentError(Exception):
     """ Custom exception class """
     pass
@@ -16,7 +15,6 @@ class ClassList:
         self.class_list = []
         self.max_students = max_students
 
-
     def add_student(self, student):
         ''' Add student if there is space in the class,
         Raises Error if student is already in the list '''
@@ -26,7 +24,6 @@ class ClassList:
             else:
                 raise StudentError('Student %s already enrolled, can\'t add again' % student)
 
-
     def remove_student(self, student):
         ''' Remove student from class list. Raises Error if student not in list '''
         if student not in self.class_list:
@@ -34,11 +31,9 @@ class ClassList:
 
         self.class_list.remove(student)
 
-
     def is_enrolled(self, student):
         ''' Verifies if the student is enrolled or not '''
         return student in self.class_list
-
 
     def index_of_student(self, student):
         ''' Returns position of student in list, indexed from 1
@@ -47,20 +42,18 @@ class ClassList:
             return self.class_list.index(student) + 1
         return None
 
-
-    ## TODO add a method called is_class_full.
-    # This should return True or False to indicate if the class is full.
-
+    def is_class_full(self):
+        ''' Returns Boolean indicating whether class is full '''
+        if len(self.class_list) < self.max_students:
+            return False
+        return True
 
     def __str__(self):
         return ", ".join(self.class_list)
 
 
-
-
 def main():
-
-    ## Just for testing
+    # Just for testing
 
     capstone = ClassList(5)
     capstone.add_student('Anna')
@@ -79,7 +72,7 @@ def main():
     capstone.add_student('Flora')  # Shouldn't add
 
     try:
-        capstone.remove_student('Gus') # not present
+        capstone.remove_student('Gus')  # not present
     except:
         print('Attempt to remove student not enrolled')
 
@@ -87,9 +80,8 @@ def main():
     print(capstone.is_enrolled('Bob'))    # True
     print(capstone.is_enrolled('Flora'))  # False
 
-    print('Anna is at position', capstone.index_of_student('Anna') ) ## 4
-    print('Alex is at position', capstone.index_of_student('Alex') ) ## None
-
+    print('Anna is at position', capstone.index_of_student('Anna'))  # 4
+    print('Alex is at position', capstone.index_of_student('Alex'))  # None
 
 
 if __name__ == '__main__':
