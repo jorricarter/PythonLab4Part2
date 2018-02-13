@@ -63,8 +63,6 @@ class TestStudentLists(TestCase):
         test_class = ClassList(2)
         self.assertFalse(test_class.is_enrolled('Snoop Dogg'))
 
-    # TODO test add students, not enrolled. use assertFalse
-
     def test_IS_ENROLLED_when_student_not_enrolled_in_populated_class_check_return_False(self):
         test_class = ClassList(2)
         student = "Kitty Cat"
